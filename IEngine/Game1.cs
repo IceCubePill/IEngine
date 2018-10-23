@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using IEngine.EngineBase;
+using IEngine.EngineBase.Components;
+using IEngine.EngineBase.SceneManager;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,13 +12,14 @@ namespace IEngine
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        
+        private Scene scene;
+        public GraphicsDeviceManager graphicManager;
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            //已经分发至各个manager类
+            graphicManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+          
         }
 
         /// <summary>
@@ -28,7 +32,13 @@ namespace IEngine
         {
             // TODO: Add your initialization logic here
 
+         
+            DebugManager.init.OnConstruct(this);
+            ResoucesManager.init.OnConstruct(this);
+            RenderManager.init.OnConstruct(this);
+            SceneManager.init.OnConstruct(this);
             base.Initialize();
+
         }
 
         /// <summary>
@@ -38,9 +48,17 @@ namespace IEngine
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+           // spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //todo :add gameobject 
+             scene = SceneManager.init.currentScene;
+            GameObject obj = GameObject.CreatNewGameObject(scene, null);
+            SpriteRender sr= obj.AddComponent<SpriteRender>();
+            sr.Sprite = ResoucesManager.init.GetTexture(@"Assets\bf_0119");
+            //todo： 遍历执行所以OnAwake方法
+            SceneManager.init.currentScene.OnAwakeAction();
         }
 
         /// <summary>
@@ -63,7 +81,7 @@ namespace IEngine
                 Exit();
 
             // TODO: Add your update logic here
-
+            scene.OnUpdateAction();
             base.Update(gameTime);
         }
 
@@ -73,10 +91,10 @@ namespace IEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            RenderManager.init.Draw();
             base.Draw(gameTime);
         }
     }
