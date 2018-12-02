@@ -20,7 +20,7 @@ namespace IEngine.EngineBase
         private GraphicsDeviceManager GDM;
         private GraphicsDevice GD;
         private SpriteBatch spriteBatch;
-        public override void OnConstruct(Game1 game)
+        internal override void OnConstruct(Game1 game)
         {
             GDM = game.graphicManager;
             GD = game.GraphicsDevice;
@@ -30,7 +30,7 @@ namespace IEngine.EngineBase
 
         private List<SpriteRender> spriteList = new List<SpriteRender>();
 
-        public void AddRender(SpriteRender sr)
+        internal void AddRender(SpriteRender sr)
         {
            
             if (spriteList.Count > 0)

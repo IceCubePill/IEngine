@@ -26,10 +26,14 @@ namespace IEngine.EngineBase.Components
            set
            {
                sprite=value;
-               rectangle=new Rectangle((int)(gameObject.Position.X - sprite.Width / 2), (int)(gameObject.Position.Y - sprite.Height / 2),sprite.Width,sprite.Height);
+                rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),sprite.Width,sprite.Height);
+               
            }
        }
         public Color color=Color.White;
+        /// <summary>
+        /// 这个矩形是按照像素来的，所以不要用浮点
+        /// </summary>
         public Rectangle rectangle;
         /// <summary>
         ///裁剪矩形

@@ -19,7 +19,7 @@ namespace IEngine.EngineBase.SceneManager
         public Scene currentScene;
         private Dictionary<string, Scene> sceneDic = new Dictionary<string, Scene>();
 
-        public override void OnConstruct(Game1 game)
+        internal override void OnConstruct(Game1 game)
         {
           
             currentScene=new Scene(DEFULT_SCENE);

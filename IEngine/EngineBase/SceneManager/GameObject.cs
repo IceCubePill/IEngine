@@ -20,6 +20,9 @@ namespace IEngine.EngineBase.SceneManager
         private readonly Dictionary<string,Component> m_components=new Dictionary<string, Component>();
         public string Name { get; set; } = "gameObject";
         public GameObject parent { get; set; }
+        /// <summary>
+        /// 物体的位置，按照左上角来计算的
+        /// </summary>
         public Vector3 Position { get; set; } = Vector3.Zero;
         public Vector2 Scale { get; set; } = Vector2.One;
         public float Rotation { get; set; } = 0;
@@ -50,7 +53,7 @@ namespace IEngine.EngineBase.SceneManager
             T t = new T {gameObject = this};
             if (m_components.ContainsKey(typeof(T).ToString()))
             {
-                DebugManager.Debug("The gameobject :"+Name+" already has the component of : "+t.GetType().ToString());
+                DebugManager.Debug(DebugType.Error, "The gameobject :" +Name+" already has the component of : "+t.GetType().ToString());
                 return null;
             }
             m_components.Add(typeof(T).ToString(),t);
@@ -63,7 +66,7 @@ namespace IEngine.EngineBase.SceneManager
         {
             if (!m_components.ContainsKey(typeof(T).ToString()))
             {
-                DebugManager.Debug("There are no Component of :" + typeof(T).ToString());
+                DebugManager.Debug(DebugType.Error, "There are no Component of :" + typeof(T).ToString());
                 return null;
             }
             return m_components[typeof(T).ToString()] as T;

@@ -4,9 +4,8 @@ using IEngine.EngineBase.SceneManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using IEngine;
 
-namespace IEngine
-{
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -37,6 +36,8 @@ namespace IEngine
             ResoucesManager.init.OnConstruct(this);
             RenderManager.init.OnConstruct(this);
             SceneManager.init.OnConstruct(this);
+            InputManager .init.OnConstruct(this);
+            TimeManager.init.OnConstruct(this);
             base.Initialize();
 
         }
@@ -56,7 +57,13 @@ namespace IEngine
              scene = SceneManager.init.currentScene;
             GameObject obj = GameObject.CreatNewGameObject(scene, null);
             SpriteRender sr= obj.AddComponent<SpriteRender>();
-            sr.Sprite = ResoucesManager.init.GetTexture(@"Assets\bf_0119");
+            sr.Sprite = ResoucesManager.init.GetTexture("Assets/bf_0119");
+            obj.AddComponent<AudioListener>();
+            AudioSource _audio=obj.AddComponent<AudioSource>();
+            _audio.AudioClip = ResoucesManager.init.GetSoundEffect("Assets/PaddleBounceSound");
+            TimerTick tick=obj.AddComponent<TimerTick>();
+            tick.TickListen += () => {_audio.Play(); };
+
             //todo： 遍历执行所以OnAwake方法
             SceneManager.init.currentScene.OnAwakeAction();
         }
@@ -83,6 +90,7 @@ namespace IEngine
             // TODO: Add your update logic here
             scene.OnUpdateAction();
             base.Update(gameTime);
+            TimeManager.init.Timer_SecondsCheck();
         }
 
         /// <summary>
@@ -98,4 +106,4 @@ namespace IEngine
             base.Draw(gameTime);
         }
     }
-}
+

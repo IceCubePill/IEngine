@@ -42,16 +42,21 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EngineBase\Components\AudioListener.cs" />
+    <Compile Include="EngineBase\Components\AudioSource.cs" />
     <Compile Include="EngineBase\Components\Component.cs" />
     <Compile Include="EngineBase\Components\SpriteRender.cs" />
+    <Compile Include="EngineBase\Components\TimerTick.cs" />
     <Compile Include="EngineBase\DebugManager.cs" />
     <Compile Include="EngineBase\ExtensionFun.cs" />
+    <Compile Include="EngineBase\InputManager.cs" />
     <Compile Include="EngineBase\RenderManager.cs" />
     <Compile Include="EngineBase\ResoucesManager.cs" />
     <Compile Include="EngineBase\SceneManager\GameObject.cs" />
     <Compile Include="EngineBase\SceneManager\Scene.cs" />
     <Compile Include="EngineBase\SceneManager\SceneManager.cs" />
     <Compile Include="EngineBase\SingleType.cs" />
+    <Compile Include="EngineBase\TimeManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +73,9 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </MonoGameContentReference>
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

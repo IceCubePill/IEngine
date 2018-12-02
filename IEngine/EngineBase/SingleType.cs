@@ -38,7 +38,7 @@ namespace IEngine.EngineBase
         /// 当管理类构造时需要的操作
         /// </summary>
         /// <param name="game"></param>
-        public virtual  void OnConstruct(Game1 game)
+        internal virtual  void OnConstruct(Game1 game)
         {
             
         }

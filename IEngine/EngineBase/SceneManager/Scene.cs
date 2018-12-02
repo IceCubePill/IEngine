@@ -12,24 +12,24 @@ using System.Threading.Tasks;
 **************************************************************/
 namespace IEngine.EngineBase.SceneManager
 {
-   public  class Scene
-   {
-        public readonly List<GameObject> rootObjects=new List<GameObject>();
-       public string name;
-      public  Scene(string name)
-      {
-        this.name=name;
-      }
-       public Action OnAwakeAction;
-       public Action OnUpdateAction;
+    public class Scene
+    {
+        public readonly List<GameObject> rootObjects = new List<GameObject>();
+        public string name;
+        public Scene(string name)
+        {
+            this.name = name;
+        }
+        public Action OnAwakeAction;
+        public Action OnUpdateAction;
 
-       public GameObject AddGameObject(GameObject obj)
-       {
-           rootObjects.Add(obj);
+        public GameObject AddGameObject(GameObject obj)
+        {
+            rootObjects.Add(obj);
 
-           return obj;
-       }
-        
+            return obj;
+        }
+
 
     }
 }
