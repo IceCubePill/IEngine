@@ -26,7 +26,7 @@ namespace IEngine.EngineBase.Components
            set
            {
                sprite=value;
-                rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),sprite.Width,sprite.Height);
+                rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),(int)(sprite.Width * gameObject.Scale.X),(int)(sprite.Height* gameObject.Scale.Y));
                
            }
        }
@@ -47,7 +47,13 @@ namespace IEngine.EngineBase.Components
         {
             base.OnAwake();
             //默认赋值
+            gameObject.IScaleLisenner += onScaleChange;
             RenderManager.init.AddRender(this);
+        }
+
+       private void onScaleChange(Vector2 vec)
+       {
+           rectangle = new Rectangle((int)(gameObject.Position.X), (int)(gameObject.Position.Y), (int)(sprite.Width * gameObject.Scale.X), (int)(sprite.Height * gameObject.Scale.Y));
         }
     }
 }

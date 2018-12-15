@@ -16,16 +16,59 @@ namespace IEngine.EngineBase.SceneManager
     public class GameObject
     {
         private GameObject(){}//隐藏构造方法
-        private List<GameObject> m_childrens;
+        private List<GameObject> m_childrens=new List<GameObject>();
         private readonly Dictionary<string,Component> m_components=new Dictionary<string, Component>();
+        public Action<Vector3> IPositionLisenner;
+        public Action<float> IRotationLisenner;
+        public Action<Vector2> IScaleLisenner;
         public string Name { get; set; } = "gameObject";
         public GameObject parent { get; set; }
         /// <summary>
         /// 物体的位置，按照左上角来计算的
         /// </summary>
-        public Vector3 Position { get; set; } = Vector3.Zero;
-        public Vector2 Scale { get; set; } = Vector2.One;
-        public float Rotation { get; set; } = 0;
+        private Vector3 _position = Vector3.Zero;
+        private Vector2 _scale= Vector2.One;
+
+        public Vector3 Position
+        {
+            get { return _position; }
+            set
+            {
+                Vector3 offset = value - _position;
+                _position = _position+ offset;
+                IPositionLisenner?.Invoke(_position);
+                foreach (var child in m_childrens)
+                {
+                    child.Position += offset;
+                }
+            }
+        }
+        public Vector2 Scale
+        {
+            get { return _scale; }
+            set
+            {
+                _scale = value;
+              
+                IScaleLisenner?.Invoke(_scale);
+                foreach (var child in m_childrens)
+                {
+                    child.Scale = _scale;
+                }
+            }
+        }
+
+        public float _rotate=0;
+
+        public float Rotation
+        {
+            get { return _rotate; }
+            set
+            {
+                _rotate = value;
+                IRotationLisenner(_rotate);
+            }
+        }
         public Scene scene;
 
         public static  GameObject CreatNewGameObject(Scene s,GameObject parent)
