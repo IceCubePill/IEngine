@@ -20,7 +20,7 @@ namespace IEngine
     {
         public override void OnAwake()
         {
-            gameObject.Scale = new Vector2(0.1f, 0.1f);
+           // gameObject.Scale = new Vector2(0.1f, 0.1f);
             base.OnAwake();
         }
 

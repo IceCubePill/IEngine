@@ -57,7 +57,7 @@ public class Game1 : Game
         scene = SceneManager.init.currentScene;
         GameObject obj = GameObject.CreatNewGameObject(scene, null);
         SpriteRender sr = obj.AddComponent<SpriteRender>();
-        sr.Sprite = ResoucesManager.init.GetTexture("Assets/bf_0119");
+        sr.Sprite = ResoucesManager.init.GetTexture("Assets/020");
         obj.AddComponent<AudioListener>();
         AudioSource _audio = obj.AddComponent<AudioSource>();
         _audio.AudioClip = ResoucesManager.init.GetSoundEffect("Assets/PaddleBounceSound");
@@ -65,7 +65,7 @@ public class Game1 : Game
         tick.TickListen += () => { _audio.Play(); };
         obj.AddComponent<TestBehaiour>();
         GameObject obj_collider = GameObject.CreatNewGameObject(scene, null);
-        obj_collider.Position=new Vector3(100,100,0);
+        obj_collider.Position=new Vector3(300,300,0);
         obj_collider.Scale=new Vector2(0.3f,0.3f);
         SpriteRender sr_collider = obj_collider.AddComponent<SpriteRender>();
         sr_collider.Sprite = ResoucesManager.init.GetTexture("Assets/bf_0119");

@@ -44,34 +44,62 @@ namespace IEngine.EngineBase
             foreach (var boxCollider in _listCollsionableList)
             {
                 if (boxCollider._guid == collder._guid) continue;
-                int offset_x, offset_y;
-                if (offset.X > 0)
-                    offset_x = collder.box.X + collder.box.Width;
-                else
-                    offset_x = collder.box.X;
-                if (offset.Y > 0)
-                    offset_y = collder.box.Y + collder.box.Height;
-                else
-                    offset_y = collder.box.Y;
 
-                if (Mathf.IsInRange(boxCollider.box.X, boxCollider.box.X + boxCollider.box.Width, offset_x+(int)offset.X)
-                    && (Mathf.IsInRange(boxCollider.box.Y, boxCollider.box.Y + boxCollider.box.Height, offset_y)))
+                //int offset_x, offset_y;
+                //if (offset.X > 0)
+                //    offset_x = collder.box.X + collder.box.Width;
+                //else
+                //    offset_x = collder.box.X;
+                //if (offset.Y > 0)
+                //    offset_y = collder.box.Y + collder.box.Height;
+                //else
+                //    offset_y = collder.box.Y;
+                //if(boxCollider.box.Width>collder.box.Width)
+                //    if (Mathf.IsInRange(boxCollider.box.X, boxCollider.box.X + boxCollider.box.Width, offset_x+(int)offset.X)
+                //        && (Mathf.IsInRange(boxCollider.box.Y, boxCollider.box.Y + boxCollider.box.Height, offset_y)))
 
+                //    if (boxCollider.Freze_x)
+                //        offset = new Vector3(0, offset.Y, offset.Z);
+                //    else if (!CollsionBox.Contains(boxCollider))
+                //        CollsionBox.Add(boxCollider);
+
+                //if (Mathf.IsInRange(boxCollider.box.Y, boxCollider.box.Y + boxCollider.box.Height, offset_y+(int)offset.Y)
+                //    && (Mathf.IsInRange(boxCollider.box.X, boxCollider.box.X + boxCollider.box.Width, offset_x)))
+                //    if (boxCollider.Freze_y)
+                //        offset = new Vector3(offset.X, 0, offset.Z);
+                //    else if (!CollsionBox.Contains(boxCollider))
+                //        CollsionBox.Add(boxCollider);
+                bool collider_x = false;
+                bool collider_y = false;
+                Rectangle rect_x = new Rectangle(collder.box.X + (int)offset.X, collder.box.Y, collder.box.Width, collder.box.Height);
+                if (boxCollider.box.Height > collder.box.Height)
+                    collider_x = Mathf.IsCross(rect_x, boxCollider.box);
+                else
+                    collider_x = Mathf.IsCross(boxCollider.box, rect_x);
+
+                Rectangle rect_y = new Rectangle(collder.box.X, collder.box.Y + (int)offset.Y, collder.box.Width, collder.box.Height);
+                if (boxCollider.box.Width > collder.box.Width)
+                    collider_y = Mathf.IsCross(rect_y, boxCollider.box);
+                else
+                    collider_y = Mathf.IsCross(boxCollider.box, rect_y);
+
+                if (collider_x)
                     if (boxCollider.Freze_x)
                         offset = new Vector3(0, offset.Y, offset.Z);
                     else if (!CollsionBox.Contains(boxCollider))
                         CollsionBox.Add(boxCollider);
-
-                if (Mathf.IsInRange(boxCollider.box.Y, boxCollider.box.Y + boxCollider.box.Height, offset_y+(int)offset.Y)
-                    && (Mathf.IsInRange(boxCollider.box.X, boxCollider.box.X + boxCollider.box.Width, offset_x)))
+                if (collider_y)
                     if (boxCollider.Freze_y)
                         offset = new Vector3(offset.X, 0, offset.Z);
                     else if (!CollsionBox.Contains(boxCollider))
                         CollsionBox.Add(boxCollider);
 
 
+
+
+
             }
-            if (offset != Vector3.Zero&& CollsionBox.Count>0)//遍历偏移
+            if (offset != Vector3.Zero && CollsionBox.Count > 0)//遍历偏移
                 foreach (BoxCollider t in CollsionBox)
                     t.gameObject.Position += offset;
 

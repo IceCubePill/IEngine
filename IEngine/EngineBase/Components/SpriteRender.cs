@@ -25,7 +25,7 @@ namespace IEngine.EngineBase.Components
            set
            {
                sprite=value;
-               onScaleChange(gameObject.Scale);
+              
                 // rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),(int)(sprite.Width * gameObject.Scale.X),(int)(sprite.Height* gameObject.Scale.Y));
                
            }
@@ -50,6 +50,7 @@ namespace IEngine.EngineBase.Components
             gameObject.IScaleLisenner += onScaleChange;
             gameObject.IPositionLisenner += onPositionChange;
             RenderManager.init.AddRender(this);
+            onScaleChange(gameObject.Scale);
         }
 
        private void onScaleChange(Vector2 vec)
