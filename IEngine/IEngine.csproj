@@ -44,12 +44,15 @@
   <ItemGroup>
     <Compile Include="EngineBase\Components\AudioListener.cs" />
     <Compile Include="EngineBase\Components\AudioSource.cs" />
+    <Compile Include="EngineBase\Components\BoxCollider.cs" />
     <Compile Include="EngineBase\Components\Component.cs" />
     <Compile Include="EngineBase\Components\SpriteRender.cs" />
     <Compile Include="EngineBase\Components\TimerTick.cs" />
     <Compile Include="EngineBase\DebugManager.cs" />
     <Compile Include="EngineBase\ExtensionFun.cs" />
     <Compile Include="EngineBase\InputManager.cs" />
+    <Compile Include="EngineBase\Mathf.cs" />
+    <Compile Include="EngineBase\physicManager.cs" />
     <Compile Include="EngineBase\RenderManager.cs" />
     <Compile Include="EngineBase\ResoucesManager.cs" />
     <Compile Include="EngineBase\SceneManager\GameObject.cs" />

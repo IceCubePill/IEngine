@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IEngine.EngineBase.SceneManager;
+
 
 
 /*************************************************************
@@ -15,6 +15,13 @@ namespace IEngine.EngineBase.Components
 {
    public abstract class Component
    {
+       protected Component()
+       {
+           _guid = _guidRoot;
+           _guidRoot++;
+       }
+       private static uint _guidRoot = 0;
+       public readonly uint _guid;
        private bool m_enable = true;
 
        public bool Enable

@@ -81,8 +81,9 @@ namespace IEngine.EngineBase
             spriteBatch.Begin();
             foreach (var sr in spriteList)
             {
-               
-               spriteBatch.Draw(sr.Sprite,sr.rectangle,sr.cutingRectangle,sr.color,sr.gameObject.Rotation,sr.gameObject.Position.ToV2(),sr.spriteEffect,sr.gameObject.Position.Z);
+
+                spriteBatch.Draw(sr.Sprite, sr.rectangle, sr.cutingRectangle, sr.color, sr.gameObject.Rotation, Vector2.Zero, sr.spriteEffect, sr.gameObject.Position.Z);
+                //spriteBatch.Draw(sr.Sprite,sr.rectangle,sr.cutingRectangle,sr.color,sr.gameObject.Rotation,sr.gameObject.Position.ToV2()*new Vector2(-1,-1),sr.spriteEffect,sr.gameObject.Position.Z);
             }
             spriteBatch.End();
         }

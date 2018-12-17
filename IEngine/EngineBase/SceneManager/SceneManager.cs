@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 ** Time			:			 2018/10/17 13:37:40							**
 ** Description	：					场景管理器						**
 **************************************************************/
-namespace IEngine.EngineBase.SceneManager
+namespace IEngine.EngineBase
 {
     public class SceneManager:SingleType<SceneManager>
     {

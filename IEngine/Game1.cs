@@ -1,6 +1,5 @@
 ﻿using IEngine.EngineBase;
 using IEngine.EngineBase.Components;
-using IEngine.EngineBase.SceneManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -38,6 +37,7 @@ public class Game1 : Game
         SceneManager.init.OnConstruct(this);
         InputManager.init.OnConstruct(this);
         TimeManager.init.OnConstruct(this);
+        physicManager.init.OnConstruct(this);
         base.Initialize();
 
     }
@@ -64,7 +64,16 @@ public class Game1 : Game
         TimerTick tick = obj.AddComponent<TimerTick>();
         tick.TickListen += () => { _audio.Play(); };
         obj.AddComponent<TestBehaiour>();
-
+        GameObject obj_collider = GameObject.CreatNewGameObject(scene, null);
+        obj_collider.Position=new Vector3(100,100,0);
+        obj_collider.Scale=new Vector2(0.3f,0.3f);
+        SpriteRender sr_collider = obj_collider.AddComponent<SpriteRender>();
+        sr_collider.Sprite = ResoucesManager.init.GetTexture("Assets/bf_0119");
+        BoxCollider box2 = obj_collider.AddComponent<BoxCollider>();
+        //box2.Freze_x = true;
+        //box2.Freze_y = true;
+        BoxCollider box1 = obj.AddComponent<BoxCollider>();
+        box1.isTrigger = true;
 
         //todo： 遍历执行所以OnAwake方法
         SceneManager.init.currentScene.OnAwakeAction();
@@ -94,10 +103,14 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-        scene.OnUpdateAction();
+         //时间输入管理
         base.Update(gameTime);
         InputManager.init.GetInPutState();
         TimeManager.init.Timer_SecondsCheck();
+        //先逻辑
+        scene.OnUpdateAction();
+        //后物理
+
     }
 
     /// <summary>

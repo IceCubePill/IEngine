@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IEngine.EngineBase.SceneManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -26,7 +25,8 @@ namespace IEngine.EngineBase.Components
            set
            {
                sprite=value;
-                rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),(int)(sprite.Width * gameObject.Scale.X),(int)(sprite.Height* gameObject.Scale.Y));
+               onScaleChange(gameObject.Scale);
+                // rectangle =new Rectangle((int)(gameObject.Position.X ), (int)(gameObject.Position.Y),(int)(sprite.Width * gameObject.Scale.X),(int)(sprite.Height* gameObject.Scale.Y));
                
            }
        }
@@ -48,12 +48,19 @@ namespace IEngine.EngineBase.Components
             base.OnAwake();
             //默认赋值
             gameObject.IScaleLisenner += onScaleChange;
+            gameObject.IPositionLisenner += onPositionChange;
             RenderManager.init.AddRender(this);
         }
 
        private void onScaleChange(Vector2 vec)
        {
-           rectangle = new Rectangle((int)(gameObject.Position.X), (int)(gameObject.Position.Y), (int)(sprite.Width * gameObject.Scale.X), (int)(sprite.Height * gameObject.Scale.Y));
+            rectangle = new Rectangle((int)(gameObject.Position.X), (int)(gameObject.Position.Y), (int)(sprite.Width * vec.X), (int)(sprite.Height * vec.Y));
+           //rectangle = new Rectangle(0,0, (int)(sprite.Width * vec.X), (int)(sprite.Height * vec.Y));
         }
+       private void onPositionChange(Vector3 vec)
+       {
+           rectangle = new Rectangle((int)(gameObject.Position.X), (int)(gameObject.Position.Y), (int)(sprite.Width * gameObject.Scale.X), (int)(sprite.Height * gameObject.Scale.Y));
+           //rectangle = new Rectangle(0,0, (int)(sprite.Width * vec.X), (int)(sprite.Height * vec.Y));
+       }
     }
 }

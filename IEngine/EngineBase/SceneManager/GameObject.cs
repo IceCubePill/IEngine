@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 ** Time			:			 2018/10/17 15:30:30							**
 ** Description	：											**
 **************************************************************/
-namespace IEngine.EngineBase.SceneManager
+namespace IEngine.EngineBase
 {
     public class GameObject
     {
@@ -35,6 +35,9 @@ namespace IEngine.EngineBase.SceneManager
             set
             {
                 Vector3 offset = value - _position;
+                if (CheackCollider != null)
+                    offset = CheackCollider(offset);
+                DebugManager.Debug(DebugType.Normol, offset.X+":"+ offset.Y);
                 _position = _position+ offset;
                 IPositionLisenner?.Invoke(_position);
                 foreach (var child in m_childrens)
@@ -70,7 +73,7 @@ namespace IEngine.EngineBase.SceneManager
             }
         }
         public Scene scene;
-
+        public Func<Vector3, Vector3> CheackCollider;
         public static  GameObject CreatNewGameObject(Scene s,GameObject parent)
         {
             GameObject obj = new GameObject {scene = s};
@@ -119,5 +122,9 @@ namespace IEngine.EngineBase.SceneManager
         {
             
         }
+
+        
     }
+
+   
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 ** Time			:			 2018/10/17 13:40:50							**
 ** Description	：											**
 **************************************************************/
-namespace IEngine.EngineBase.SceneManager
+namespace IEngine.EngineBase
 {
     public class Scene
     {
