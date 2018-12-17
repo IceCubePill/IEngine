@@ -16,7 +16,7 @@ namespace IEngine.EngineBase.Components
 {
    public  class SpriteRender:Component
    {
-
+       
         private Texture2D sprite;
 
         public Texture2D Sprite
@@ -64,4 +64,6 @@ namespace IEngine.EngineBase.Components
            //rectangle = new Rectangle(0,0, (int)(sprite.Width * vec.X), (int)(sprite.Height * vec.Y));
        }
     }
+
+   
 }

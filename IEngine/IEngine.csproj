@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EngineBase\Components\Animator.cs" />
     <Compile Include="EngineBase\Components\AudioListener.cs" />
     <Compile Include="EngineBase\Components\AudioSource.cs" />
     <Compile Include="EngineBase\Components\BoxCollider.cs" />

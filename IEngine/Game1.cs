@@ -58,6 +58,9 @@ public class Game1 : Game
         GameObject obj = GameObject.CreatNewGameObject(scene, null);
         SpriteRender sr = obj.AddComponent<SpriteRender>();
         sr.Sprite = ResoucesManager.init.GetTexture("Assets/020");
+        obj.Scale=new Vector2(0.3f,0.3f);
+        Animator anima=obj.AddComponent<Animator>();
+        anima.SliceImage(4,4,5);
         obj.AddComponent<AudioListener>();
         AudioSource _audio = obj.AddComponent<AudioSource>();
         _audio.AudioClip = ResoucesManager.init.GetSoundEffect("Assets/PaddleBounceSound");

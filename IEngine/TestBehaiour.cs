@@ -28,7 +28,7 @@ namespace IEngine
         {
             base.OnUpdate();
             
-            int offset_x = (InputManager.init.IsKeyDown(Keys.D) ? 10 : 0)-(InputManager.init.IsKeyDown(Keys.A) ? 10 : 0)  ;
+            int offset_x = (InputManager.init.IsKeyDown(Keys.D) ? 10 : 0)-(InputManager.init.IsKeyDown(Keys.A) ? 10 : 0) ;
             int offset_y = (InputManager.init.IsKeyDown(Keys.S) ? 10 : 0)-(InputManager.init.IsKeyDown(Keys.W) ? 10 : 0) ;
            // DebugManager.Debug(DebugType.Normol,offset_x+"::"+offset_y);
             gameObject.Position = new Vector3(gameObject.Position.X + offset_x, gameObject.Position.Y + offset_y, gameObject.Position.Z);

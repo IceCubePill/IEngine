@@ -19,6 +19,7 @@ namespace IEngine.EngineBase.Components
        {
            _guid = _guidRoot;
            _guidRoot++;
+          
        }
        private static uint _guidRoot = 0;
        public readonly uint _guid;
@@ -44,12 +45,12 @@ namespace IEngine.EngineBase.Components
 
        public GameObject gameObject;
 
-
        public T AddComponen<T>() where T : Component,new()
        {
           
             return  gameObject.AddComponent<T>();
        }
+
        public virtual void  OnAwake()
        {
           
