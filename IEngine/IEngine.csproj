@@ -49,6 +49,7 @@
     <Compile Include="EngineBase\Components\Component.cs" />
     <Compile Include="EngineBase\Components\SpriteRender.cs" />
     <Compile Include="EngineBase\Components\TimerTick.cs" />
+    <Compile Include="EngineBase\ContentLoader.cs" />
     <Compile Include="EngineBase\DebugManager.cs" />
     <Compile Include="EngineBase\ExtensionFun.cs" />
     <Compile Include="EngineBase\InputManager.cs" />

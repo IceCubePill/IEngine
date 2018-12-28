@@ -11,6 +11,7 @@ using IEngine;
 public class Game1 : Game
 {
     private Scene scene;
+    private ContentLoader contentLoader;
     public GraphicsDeviceManager graphicManager;
     public Game1()
     {
@@ -50,33 +51,12 @@ public class Game1 : Game
     {
         // Create a new SpriteBatch, which can be used to draw textures.
         // spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        scene = SceneManager.init.currentScene;
         // TODO: use this.Content to load your game content here
 
         //todo :add gameobject 
-        scene = SceneManager.init.currentScene;
-        GameObject obj = GameObject.CreatNewGameObject(scene, null);
-        SpriteRender sr = obj.AddComponent<SpriteRender>();
-        sr.Sprite = ResoucesManager.init.GetTexture("Assets/020");
-        obj.Scale=new Vector2(0.3f,0.3f);
-        Animator anima=obj.AddComponent<Animator>();
-        anima.SliceImage(4,4,5);
-        obj.AddComponent<AudioListener>();
-        AudioSource _audio = obj.AddComponent<AudioSource>();
-        _audio.AudioClip = ResoucesManager.init.GetSoundEffect("Assets/PaddleBounceSound");
-        TimerTick tick = obj.AddComponent<TimerTick>();
-        tick.TickListen += () => { _audio.Play(); };
-        obj.AddComponent<TestBehaiour>();
-        GameObject obj_collider = GameObject.CreatNewGameObject(scene, null);
-        obj_collider.Position=new Vector3(300,300,0);
-        obj_collider.Scale=new Vector2(0.3f,0.3f);
-        SpriteRender sr_collider = obj_collider.AddComponent<SpriteRender>();
-        sr_collider.Sprite = ResoucesManager.init.GetTexture("Assets/bf_0119");
-        BoxCollider box2 = obj_collider.AddComponent<BoxCollider>();
-        //box2.Freze_x = true;
-        //box2.Freze_y = true;
-        BoxCollider box1 = obj.AddComponent<BoxCollider>();
-        box1.isTrigger = true;
+        contentLoader =new ContentLoader(scene);
+        contentLoader.LoadContent();
 
         //todo： 遍历执行所以OnAwake方法
         SceneManager.init.currentScene.OnAwakeAction();

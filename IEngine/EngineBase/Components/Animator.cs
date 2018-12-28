@@ -22,6 +22,7 @@ namespace IEngine.EngineBase.Components
        private int fpi_count = 0;
         public int framesPerImage = 1;
         List<Rectangle> RectList=new List<Rectangle>();
+        //todo 动画分组和状态机
         public override void OnAwake()
         {
             base.OnAwake();
